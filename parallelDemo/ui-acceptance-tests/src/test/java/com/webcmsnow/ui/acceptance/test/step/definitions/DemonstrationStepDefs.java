@@ -1,17 +1,17 @@
-package com.opencredo.ui.acceptance.test.step.definitions;
+package com.webcmsnow.ui.acceptance.test.step.definitions;
 
-import com.opencredo.ui.acceptance.test.config.spring.TestConfig;
-import com.opencredo.ui.acceptance.test.interaction.objects.GoogleSearchPage;
 import cucumber.api.Scenario;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import com.opencredo.ui.acceptance.test.common.World;
-import com.opencredo.ui.acceptance.test.interaction.objects.GoogleSearchPage;
-import com.opencredo.ui.acceptance.test.config.spring.TestConfig;
+
+import com.webcmsnow.ui.acceptance.test.common.World;
+import com.webcmsnow.ui.acceptance.test.config.spring.TestConfig;
+import com.webcmsnow.ui.acceptance.test.interaction.objects.GoogleSearchPage;
 
 import static org.junit.Assert.assertTrue;
 

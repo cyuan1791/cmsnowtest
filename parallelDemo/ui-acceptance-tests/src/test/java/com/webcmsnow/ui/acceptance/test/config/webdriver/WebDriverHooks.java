@@ -1,10 +1,12 @@
-package com.opencredo.ui.acceptance.test.config.webdriver;
+package com.webcmsnow.ui.acceptance.test.config.webdriver;
 
-import com.opencredo.ui.acceptance.test.common.World;
-import com.opencredo.ui.acceptance.test.config.spring.TestConfig;
+import com.webcmsnow.ui.acceptance.test.common.World;
+import com.webcmsnow.ui.acceptance.test.config.spring.TestConfig;
+
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
+
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.springframework.beans.factory.annotation.Autowired;

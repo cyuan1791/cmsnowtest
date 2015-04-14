@@ -1,4 +1,4 @@
-package com.opencredo.ui.acceptance.test;
+package com.webcmsnow.ui.acceptance.test;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;

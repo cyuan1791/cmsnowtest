@@ -1,13 +1,13 @@
-package com.opencredo.ui.acceptance.test.config.spring;
+package com.webcmsnow.ui.acceptance.test.config.spring;
 
-import com.opencredo.ui.acceptance.test.interaction.objects.GoogleSearchPage;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import com.opencredo.ui.acceptance.test.config.webdriver.SharedDriver;
-import com.opencredo.ui.acceptance.test.config.TestProperties;
-import com.opencredo.ui.acceptance.test.common.World;
-import com.opencredo.ui.acceptance.test.interaction.objects.GoogleSearchPage;
+
+import com.webcmsnow.ui.acceptance.test.common.World;
+import com.webcmsnow.ui.acceptance.test.config.TestProperties;
+import com.webcmsnow.ui.acceptance.test.config.webdriver.SharedDriver;
+import com.webcmsnow.ui.acceptance.test.interaction.objects.GoogleSearchPage;
 
 /**
  * Spring configuration for autowired objects

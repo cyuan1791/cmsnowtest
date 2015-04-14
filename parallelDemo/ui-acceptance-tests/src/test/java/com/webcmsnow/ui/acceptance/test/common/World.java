@@ -1,4 +1,4 @@
-package com.opencredo.ui.acceptance.test.common;
+package com.webcmsnow.ui.acceptance.test.common;
 
 /**
  * This class allows for sharing variables across multiple
