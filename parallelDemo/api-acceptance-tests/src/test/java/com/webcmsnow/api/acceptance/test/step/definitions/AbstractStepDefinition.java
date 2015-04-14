@@ -1,7 +1,9 @@
-package com.opencredo.api.acceptance.test.step.definitions;
+package com.webcmsnow.api.acceptance.test.step.definitions;
 
-import com.opencredo.api.acceptance.test.common.World;
+import com.webcmsnow.api.acceptance.test.common.World;
+
 import cucumber.api.Scenario;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**

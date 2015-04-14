@@ -1,4 +1,4 @@
-package com.opencredo.api.acceptance.test.interaction.objects;
+package com.webcmsnow.api.acceptance.test.interaction.objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;

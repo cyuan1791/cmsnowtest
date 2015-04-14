@@ -1,7 +1,8 @@
-package com.opencredo.api.acceptance.test.interaction.objects;
+package com.webcmsnow.api.acceptance.test.interaction.objects;
 
 
-import com.opencredo.api.acceptance.test.common.RepositoryResponse;
+import com.webcmsnow.api.acceptance.test.common.RepositoryResponse;
+
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 import org.springframework.http.HttpMethod;

@@ -1,4 +1,4 @@
-package com.opencredo.api.acceptance.test.config;
+package com.webcmsnow.api.acceptance.test.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;

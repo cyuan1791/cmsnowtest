@@ -1,9 +1,11 @@
-package com.opencredo.api.acceptance.test.step.definitions;
+package com.webcmsnow.api.acceptance.test.step.definitions;
 
 
-import com.opencredo.api.acceptance.test.config.spring.TestConfig;
-import com.opencredo.api.acceptance.test.interaction.objects.GithubStatusApi;
+import com.webcmsnow.api.acceptance.test.config.spring.TestConfig;
+import com.webcmsnow.api.acceptance.test.interaction.objects.GithubStatusApi;
+
 import cucumber.api.java.en.Given;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 

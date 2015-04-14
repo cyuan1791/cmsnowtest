@@ -1,4 +1,4 @@
-package com.opencredo.api.acceptance.test.common;
+package com.webcmsnow.api.acceptance.test.common;
 
 
 import org.codehaus.jackson.annotate.JsonProperty;

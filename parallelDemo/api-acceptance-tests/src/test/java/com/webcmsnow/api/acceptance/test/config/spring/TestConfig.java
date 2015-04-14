@@ -1,9 +1,10 @@
-package com.opencredo.api.acceptance.test.config.spring;
+package com.webcmsnow.api.acceptance.test.config.spring;
 
-import com.opencredo.api.acceptance.test.common.World;
-import com.opencredo.api.acceptance.test.config.TestProperties;
-import com.opencredo.api.acceptance.test.interaction.objects.GithubApi;
-import com.opencredo.api.acceptance.test.interaction.objects.GithubStatusApi;
+import com.webcmsnow.api.acceptance.test.common.World;
+import com.webcmsnow.api.acceptance.test.config.TestProperties;
+import com.webcmsnow.api.acceptance.test.interaction.objects.GithubApi;
+import com.webcmsnow.api.acceptance.test.interaction.objects.GithubStatusApi;
+
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.context.annotation.Bean;
