@@ -47,9 +47,9 @@
 			</activation>
 			<id>default</id>
 			<modules>
-				<module>ui-acceptance-tests</module>
-				<module>api-acceptance-tests</module>
-				<module>performance-tests</module>
+				<module>../ui-acceptance-tests</module>
+				<module>../api-acceptance-tests</module>
+				<module>../performance-tests</module>
 			</modules>
 		</profile>
 		<profile>
