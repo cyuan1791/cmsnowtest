@@ -21,7 +21,7 @@ public class TestConfig {
     }
 
     @Bean
-    public SharedDriver driver() {
+    public SharedDriver driver() throws Exception{
         return new SharedDriver();
     }
 
@@ -31,7 +31,7 @@ public class TestConfig {
     }
 
     @Bean
-    public GoogleSearchPage googleSearchPage() {
+    public GoogleSearchPage googleSearchPage() throws Exception{
         return new GoogleSearchPage(
                 properties().getApplicationBaseUrl(),
                 driver(),
