@@ -15,6 +15,10 @@ public class TestProperties {
         return environment.getProperty("ui.acceptance.test.application.base.url");
     }
 
+    public String getApplicationWebBaseUrl() {
+        return environment.getProperty("ui.acceptance.test.application.webbase.url");
+    }
+    
     public int getSeleniumWaitTimeOutSeconds() {
         return environment.getProperty("ui.acceptance.test.selenium.wait.timeout.seconds", Integer.class, 10);
     }

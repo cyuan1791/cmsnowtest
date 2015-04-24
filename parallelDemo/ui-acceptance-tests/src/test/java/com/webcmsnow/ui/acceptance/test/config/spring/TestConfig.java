@@ -8,6 +8,7 @@ import com.webcmsnow.ui.acceptance.test.common.World;
 import com.webcmsnow.ui.acceptance.test.config.TestProperties;
 import com.webcmsnow.ui.acceptance.test.config.webdriver.SharedDriver;
 import com.webcmsnow.ui.acceptance.test.interaction.objects.GoogleSearchPage;
+import com.webcmsnow.ui.acceptance.test.interaction.objects.WebCMSPage;
 
 /**
  * Spring configuration for autowired objects
@@ -34,6 +35,14 @@ public class TestConfig {
     public GoogleSearchPage googleSearchPage() throws Exception{
         return new GoogleSearchPage(
                 properties().getApplicationBaseUrl(),
+                driver(),
+                properties().getSeleniumWaitTimeOutSeconds()
+        );
+    }
+    @Bean
+    public WebCMSPage webCMSPage() throws Exception{
+        return new WebCMSPage(
+                properties().getApplicationWebBaseUrl(),
                 driver(),
                 properties().getSeleniumWaitTimeOutSeconds()
         );

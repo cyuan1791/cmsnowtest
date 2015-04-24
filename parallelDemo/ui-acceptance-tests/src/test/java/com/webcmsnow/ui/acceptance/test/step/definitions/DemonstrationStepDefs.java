@@ -46,13 +46,13 @@ public class DemonstrationStepDefs extends AbstractStepDefinition {
 
     @When("^I search for \"(.+)\"$")
     public void I_search_for(String searchText) throws Throwable {
-        //utilise a method on the page object to perform an interaction
+        //utilize a method on the page object to perform an interaction
         googleSearchPage.search(searchText);
     }
 
     @Then("^the site \"(.+)\" should be present in the results$")
     public void the_result_should_contain_url(String resultUrl) throws Throwable {
-        //utilise a method on the page object to perform an assertion
+        //utilize a method on the page object to perform an assertion
         assertTrue(googleSearchPage.isSearchResultPresent(resultUrl));
     }
 }

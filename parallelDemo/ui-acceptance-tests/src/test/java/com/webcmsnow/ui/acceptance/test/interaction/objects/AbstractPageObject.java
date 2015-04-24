@@ -12,6 +12,11 @@ public abstract class AbstractPageObject {
     private String path;
     private final WebDriver driver;
     private final int waitTimeOutSeconds;
+ // Mouse over a target element and make sub menu visiable
+    String javaScript = "var evObj = document.createEvent('MouseEvents');" +
+         "evObj.initMouseEvent(\"mouseover\",true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);" +
+         "arguments[0].dispatchEvent(evObj);";
+    
 
     public AbstractPageObject(String path, WebDriver driver, int waitTimeOutSeconds) {
         this.path = path;
@@ -35,6 +40,10 @@ public abstract class AbstractPageObject {
         return path;
     }
 
+    // Mouse over an webElement
+    public void mouseOver(By by) {
+    	((JavascriptExecutor)driver).executeScript(javaScript, getDriver().findElement(by));
+    }
     /**
      * Go to page and wait until url reflects
      * expected page (or timeout reached)
