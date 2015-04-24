@@ -15,6 +15,7 @@ import com.webcmsnow.ui.acceptance.test.config.spring.TestConfig;
 import com.webcmsnow.ui.acceptance.test.interaction.objects.GoogleSearchPage;
 import com.webcmsnow.ui.acceptance.test.interaction.objects.WebCMSPage;
 
+
 import static org.junit.Assert.assertTrue;
 
 @ContextConfiguration(classes = TestConfig.class)
@@ -38,7 +39,11 @@ public class CreateWebsite extends AbstractStepDefinition {
 			throws Throwable {
 		System.out.println(testProperties.getApplicationWebBaseUrl());
 		System.out.println(user+password);
-		webCMSPage.login(user, password);
+		webCMSPage.goTo();
+    	webCMSPage.login(user, password);
+    	webCMSPage.createWebsite("");
+    	webCMSPage.renameWebsite("w1");
+    	webCMSPage.removeWebsite();
 	}
 
 }

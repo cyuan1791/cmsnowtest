@@ -3,103 +3,112 @@ package com.webcmsnow.ui.acceptance.test.interaction.objects;
 import com.webcmsnow.ui.acceptance.test.config.webdriver.WaitConditions;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.*;
 
 /**
  * Reusable methods for all page objects
  */
 public abstract class AbstractPageObject {
-    private String path;
-    private final WebDriver driver;
-    private final int waitTimeOutSeconds;
- // Mouse over a target element and make sub menu visiable
-    String javaScript = "var evObj = document.createEvent('MouseEvents');" +
-         "evObj.initMouseEvent(\"mouseover\",true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);" +
-         "arguments[0].dispatchEvent(evObj);";
-    
+	private String path;
+	private final WebDriver driver;
+	private final int waitTimeOutSeconds;
+	// Mouse over a target element and make sub menu visiable
+	String javaScript = "var evObj = document.createEvent('MouseEvents');"
+			+ "evObj.initMouseEvent(\"mouseover\",true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);"
+			+ "arguments[0].dispatchEvent(evObj);";
 
-    public AbstractPageObject(String path, WebDriver driver, int waitTimeOutSeconds) {
-        this.path = path;
-        this.driver = driver;
-        this.waitTimeOutSeconds = waitTimeOutSeconds;
-    }
+	public AbstractPageObject(String path, WebDriver driver,
+			int waitTimeOutSeconds) {
+		this.path = path;
+		this.driver = driver;
+		this.waitTimeOutSeconds = waitTimeOutSeconds;
+	}
 
-    public void deleteAllCookies() {
-        getDriver().manage().deleteAllCookies();
-    }
+	public void deleteAllCookies() {
+		getDriver().manage().deleteAllCookies();
+	}
 
-    public WebDriver getDriver() {
-        return driver;
-    }
+	public WebDriver getDriver() {
+		return driver;
+	}
 
-    public void goTo() {
-        getDriver().navigate().to(path);
-    }
+	public void goTo() {
+		getDriver().navigate().to(path);
+	}
 
-    public String getPath() {
-        return path;
-    }
+	public String getPath() {
+		return path;
+	}
 
-    // Mouse over an webElement
-    public void mouseOver(By by) {
-    	((JavascriptExecutor)driver).executeScript(javaScript, getDriver().findElement(by));
-    }
-    /**
-     * Go to page and wait until url reflects
-     * expected page (or timeout reached)
-     */
-    public void goToAndWait() {
-        goTo();
-        ensure_is_current();
-    }
+	// Mouse over an webElement
+	public void mouseOver(By bid) {
+		// ((JavascriptExecutor)driver).executeScript(javaScript,
+		// this.driver.findElement(by));
+		WebElement mytarget = driver.findElement(bid);
 
-    public void ensure_is_current() {
-        wait_until_true_or_timeout(WaitConditions.urlContains(path));
-    }
+		Actions builder = new Actions(driver);
+		builder.moveToElement(mytarget).perform();
+	}
 
-    public boolean is_text_present(String text) {
-        wait_until_true_or_timeout(WaitConditions.pageContainsText(text));
-        return true;
-    }
+	/**
+	 * Go to page and wait until url reflects expected page (or timeout reached)
+	 */
+	public void goToAndWait() {
+		goTo();
+		ensure_is_current();
+	}
 
-    /**
-     * wait until condition is true or timeout kicks in
-     */
-    protected <V> V wait_until_true_or_timeout(ExpectedCondition<V> isTrue) {
-        Wait<WebDriver> wait = new WebDriverWait(this.driver, waitTimeOutSeconds)
-                .ignoring(StaleElementReferenceException.class);
-        try {
-            return wait.until(isTrue);
-        } catch (TimeoutException rte) {
-            throw new TimeoutException(rte.getMessage() + "\n\nPageSource:\n\n" + getDriver().getPageSource());
-        }
-    }
+	public void ensure_is_current() {
+		wait_until_true_or_timeout(WaitConditions.urlContains(path));
+	}
 
-    public void setText(WebElement element, String text) {
-        element.clear();
-        element.sendKeys(text);
-    }
+	public boolean is_text_present(String text) {
+		wait_until_true_or_timeout(WaitConditions.pageContainsText(text));
+		return true;
+	}
 
-    public void submit(WebElement element) {
-        element.submit();
-    }
+	/**
+	 * wait until condition is true or timeout kicks in
+	 */
+	protected <V> V wait_until_true_or_timeout(ExpectedCondition<V> isTrue) {
+		Wait<WebDriver> wait = new WebDriverWait(this.driver,
+				waitTimeOutSeconds)
+				.ignoring(StaleElementReferenceException.class);
+		try {
+			return wait.until(isTrue);
+		} catch (TimeoutException rte) {
+			throw new TimeoutException(rte.getMessage() + "\n\nPageSource:\n\n"
+					+ getDriver().getPageSource());
+		}
+	}
 
-    public void selectDropdownByText(WebElement element, String visibleText){
-        Select filterSelect = new Select(element);
-        waitForDropdownItems(element);
-        filterSelect.selectByVisibleText(visibleText);
-    }
+	public void setText(WebElement element, String text) {
+		element.clear();
+		element.sendKeys(text);
+	}
 
-    private void waitForDropdownItems(WebElement element) {
-        WebDriverWait wait = new WebDriverWait(getDriver(),waitTimeOutSeconds );
-        wait.until(ExpectedConditions.elementToBeClickable(element));
-    }
+	public void submit(WebElement element) {
+		element.submit();
+	}
 
-    protected WebElement find(By locator) {
-        try {
-            return getDriver().findElement(locator);
-        } catch (NoSuchElementException ex) {
-            throw new NoSuchElementException(ex.getMessage() + "\n\nPageSource:\n\n" + getDriver().getPageSource());
-        }
-    }
+	public void selectDropdownByText(WebElement element, String visibleText) {
+		Select filterSelect = new Select(element);
+		waitForDropdownItems(element);
+		filterSelect.selectByVisibleText(visibleText);
+	}
+
+	private void waitForDropdownItems(WebElement element) {
+		WebDriverWait wait = new WebDriverWait(getDriver(), waitTimeOutSeconds);
+		wait.until(ExpectedConditions.elementToBeClickable(element));
+	}
+
+	protected WebElement find(By locator) {
+		try {
+			return getDriver().findElement(locator);
+		} catch (NoSuchElementException ex) {
+			throw new NoSuchElementException(ex.getMessage()
+					+ "\n\nPageSource:\n\n" + getDriver().getPageSource());
+		}
+	}
 }

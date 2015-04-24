@@ -21,15 +21,48 @@ public class WebCMSPage extends AbstractPageObject {
         setText(find(searchTextbox), searchText);
         submit(find(searchTextbox));
     }
-    public void login(String user, String password) throws InterruptedException {
-    	goTo();
-    	WebCMSPageSteps page = new WebCMSPageSteps(getDriver());
-    	page.login(user, password);
-    	page.createWebsite("");
-    	page.renameWebsite("w1");
-    	page.removeWebsite();
-    }
+    
     public boolean isSearchResultPresent(String searchResultUrl) {
         return is_text_present(searchResultUrl);
     }
+    public void login(String user, String password) throws InterruptedException {
+    	//getDriver().get(baseUrl + "/");
+        getDriver().findElement(By.id("UserLogin_password")).clear();
+        getDriver().findElement(By.id("UserLogin_password")).sendKeys(password);
+        getDriver().findElement(By.id("UserLogin_username")).clear();
+        getDriver().findElement(By.id("UserLogin_username")).sendKeys(user);
+        getDriver().findElement(By.name("yt0")).click();
+        //Thread.sleep(100000);
+        
+    }
+    public void createWebsite(String template) throws InterruptedException {
+        // Create website
+    	getDriver().findElement(By.xpath("//*[@id='search-type']/li[3]/a/span")).click();
+    	getDriver().findElement(By.name("yt0")).click();
+    	getDriver().findElement(By.xpath("//*[@id='page']/div[2]/div/div/table/tbody/tr[1]/td[1]/form"));
+        
+        //mouseOver(By.xpath("/html/body/div[3]/div[1]/div/div/div/ul/li[1]/a/span"));
+    }
+    public void renameWebsite(String newname) {
+    	// renmae the first website
+    	mouseOver(By.xpath("/html/body/div[3]/div[1]/div/div/div/ul/li[1]/a/span"));
+    	getDriver().findElement(By.xpath("/html/body/div[3]/div[1]/div/div/div/ul/li[1]/ul/li[1]/a/span")).click();
+    	getDriver().findElement(By.xpath("/html/body/div[3]/div[2]/div/div/div[2]/div/div/div[3]/div[1]/a")).click();
+    	getDriver().findElement(By.linkText("Update Web")).click();
+    	getDriver().findElement(By.xpath("/html/body/div[3]/div[2]/div/div/div[2]/div/div/form/div[2]/input")).clear();
+    	getDriver().findElement(By.xpath("/html/body/div[3]/div[2]/div/div/div[2]/div/div/form/div[2]/input")).sendKeys(newname);
+    	getDriver().findElement(By.name("yt0")).click();
+    }
+
+    // remove the first website
+    public void removeWebsite() {
+    	mouseOver(By.xpath("/html/body/div[3]/div[1]/div/div/div/ul/li[1]/a/span"));
+    	getDriver().findElement(By.xpath("/html/body/div[3]/div[1]/div/div/div/ul/li[1]/ul/li[1]/a/span")).click();
+    	getDriver().findElement(By.xpath("/html/body/div[3]/div[2]/div/div/div[2]/div/div/div[3]/div[1]/a")).click();
+    	getDriver().findElement(By.linkText("Delete Web")).click();
+    	Alert alert = getDriver().switchTo().alert();
+    	alert.accept();
+    	//getDriver().switchTo().alert().dismiss();
+    }
+    
 }
