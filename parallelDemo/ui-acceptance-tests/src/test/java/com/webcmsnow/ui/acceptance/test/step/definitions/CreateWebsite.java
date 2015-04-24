@@ -41,9 +41,25 @@ public class CreateWebsite extends AbstractStepDefinition {
 		System.out.println(user+password);
 		webCMSPage.goTo();
     	webCMSPage.login(user, password);
-    	webCMSPage.createWebsite("");
-    	webCMSPage.renameWebsite("w1");
-    	webCMSPage.removeWebsite();
+    	//webCMSPage.createWebsite("");
+    	//webCMSPage.renameWebsite("w1");
+    	//webCMSPage.removeWebsite();
 	}
 
+	@Then("^Create a website$")
+	public void create_a_website() throws Throwable {
+		webCMSPage.createWebsite("");
+	}
+
+	@Then("^Rename a webeite to (.*?)$")
+	public void rename_a_webeite_to_w(String newWebSite) throws Throwable {
+		webCMSPage.renameWebsite(newWebSite);
+	}
+
+	@Then("^Remove newly createde website$")
+	public void remove_newly_createde_website() throws Throwable {
+		webCMSPage.removeWebsite();
+	}
+
+	
 }
