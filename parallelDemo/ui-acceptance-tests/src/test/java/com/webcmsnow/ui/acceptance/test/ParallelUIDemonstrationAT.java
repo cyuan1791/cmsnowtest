@@ -2,7 +2,10 @@ package com.webcmsnow.ui.acceptance.test;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
+
 import org.junit.runner.RunWith;
+
+import com.webcmsnow.ui.acceptance.test.config.TestProperties;
 
 /**
  * This class is a duplicate of UIDemonstrationAT.class and exists purely to

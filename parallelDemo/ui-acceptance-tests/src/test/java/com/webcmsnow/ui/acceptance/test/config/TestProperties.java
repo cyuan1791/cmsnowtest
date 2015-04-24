@@ -1,5 +1,6 @@
 package com.webcmsnow.ui.acceptance.test.config;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 
@@ -17,4 +18,10 @@ public class TestProperties {
     public int getSeleniumWaitTimeOutSeconds() {
         return environment.getProperty("ui.acceptance.test.selenium.wait.timeout.seconds", Integer.class, 10);
     }
+   public static void main(String[] args) throws Exception
+    {
+    	TestProperties tp = new TestProperties();
+        System.out.println(tp.getApplicationBaseUrl());
+    }
+   
 }

@@ -17,7 +17,7 @@ import com.webcmsnow.ui.acceptance.test.interaction.objects.GoogleSearchPage;
 import static org.junit.Assert.assertTrue;
 
 @ContextConfiguration(classes= TestConfig.class)
-public class DemonstrationStepDefs extends AbstractStepDefinition {
+public class CreateWebsite extends AbstractStepDefinition {
     @Autowired
     private GoogleSearchPage googleSearchPage;
     @Autowired
@@ -33,26 +33,21 @@ public class DemonstrationStepDefs extends AbstractStepDefinition {
         super.before(scenario);
     }
 
-    @Given("^I am on the Google search page")
-    public void I_am_on_the_google_search_page() throws Throwable {
-    	
-        System.out.println(testProperties.getApplicationBaseUrl());
-        //demonstrates of writing to the cucumber test report
-        embedTextInReport("Navigating to page " + googleSearchPage.getPath());
-
-        //navigate to the page and wait for load to complete
-        googleSearchPage.goToAndWait();
+    @Given("^Login on user with web master role$")
+    public void login_on_user_with_web_master_role() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        System.out.println("given");
     }
 
-    @When("^I search for \"(.+)\"$")
-    public void I_search_for(String searchText) throws Throwable {
-        //utilise a method on the page object to perform an interaction
-        googleSearchPage.search(searchText);
+    @Then("^create a website from template website and navigation style$")
+    public void create_a_website_from_template_website_and_navigation_style() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+    	System.out.println("given");
     }
 
-    @Then("^the site \"(.+)\" should be present in the results$")
-    public void the_result_should_contain_url(String resultUrl) throws Throwable {
-        //utilise a method on the page object to perform an assertion
-        assertTrue(googleSearchPage.isSearchResultPresent(resultUrl));
+    @Then("^Update and Check the website$")
+    public void update_and_Check_the_website() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+    	System.out.println("given");
     }
 }
