@@ -6,6 +6,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
+import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 
@@ -15,8 +16,7 @@ import com.webcmsnow.ui.acceptance.test.config.spring.TestConfig;
 import com.webcmsnow.ui.acceptance.test.interaction.objects.GoogleSearchPage;
 import com.webcmsnow.ui.acceptance.test.interaction.objects.WebCMSPage;
 
-
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 @ContextConfiguration(classes = TestConfig.class)
 public class CreateWebsite extends AbstractStepDefinition {

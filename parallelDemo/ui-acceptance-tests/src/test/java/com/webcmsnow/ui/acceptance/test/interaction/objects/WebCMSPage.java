@@ -1,5 +1,8 @@
 package com.webcmsnow.ui.acceptance.test.interaction.objects;
 
+
+
+import org.junit.Assert;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -52,6 +55,11 @@ public class WebCMSPage extends AbstractPageObject {
     	getDriver().findElement(By.xpath("/html/body/div[3]/div[2]/div/div/div[2]/div/div/form/div[2]/input")).clear();
     	getDriver().findElement(By.xpath("/html/body/div[3]/div[2]/div/div/div[2]/div/div/form/div[2]/input")).sendKeys(newname);
     	getDriver().findElement(By.name("yt0")).click();
+    	
+    	// make sure rename is successful
+    	System.out.println(getDriver().getPageSource());
+    	Assert.assertFalse("Should not find Rename website failed. Most likely the website "+ newname + " exist. You cannnot to an exist website.", getDriver().getPageSource().contains("Rename website failed"));
+    	
     	getDriver().findElement(By.xpath("/html/body/div[3]/div[1]/div/div/div/ul/li[2]/a")).click();
     }
     
