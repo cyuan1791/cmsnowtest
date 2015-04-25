@@ -5,6 +5,7 @@ Feature: Demonstrate the UI create websites
     Given Login on <User> <Password> with web master role
     Then Create a website
     Then Rename a webeite to <newWebSiteName>
+    Then Update website
     Then Remove newly createde website
     
     Examples:

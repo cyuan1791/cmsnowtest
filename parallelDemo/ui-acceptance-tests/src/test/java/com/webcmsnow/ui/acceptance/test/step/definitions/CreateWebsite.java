@@ -55,6 +55,11 @@ public class CreateWebsite extends AbstractStepDefinition {
 	public void rename_a_webeite_to_w(String newWebSite) throws Throwable {
 		webCMSPage.renameWebsite(newWebSite);
 	}
+	
+	@Then("^Update website$")
+	public void updatewebsite() throws Throwable {
+		webCMSPage.updateWebsite();
+	}
 
 	@Then("^Remove newly createde website$")
 	public void remove_newly_createde_website() throws Throwable {
