@@ -7,6 +7,8 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import com.webcmsnow.ui.acceptance.test.common.RenameFailed;
+
 /**
  * Provides methods for interacting with the Google search page
  */
@@ -46,8 +48,10 @@ public class WebCMSPage extends AbstractPageObject {
         
         //mouseOver(By.xpath("/html/body/div[3]/div[1]/div/div/div/ul/li[1]/a/span"));
     }
-    public void renameWebsite(String newname) {
+    public void renameWebsite(String newname) throws RenameFailed, InterruptedException  {
     	// renmae the first website
+    	goTo();
+    	getDriver().findElement(By.xpath("/html/body/div[2]/nav/div/div[2]/ul/li[2]/a/span")).click();
     	mouseOver(By.xpath("/html/body/div[3]/div[1]/div/div/div/ul/li[1]/a/span"));
     	getDriver().findElement(By.xpath("/html/body/div[3]/div[1]/div/div/div/ul/li[1]/ul/li[1]/a/span")).click();
     	getDriver().findElement(By.xpath("/html/body/div[3]/div[2]/div/div/div[2]/div/div/div[3]/div[1]/a")).click();
@@ -57,23 +61,85 @@ public class WebCMSPage extends AbstractPageObject {
     	getDriver().findElement(By.name("yt0")).click();
     	
     	// make sure rename is successful
-    	System.out.println(getDriver().getPageSource());
-    	Assert.assertFalse("Should not find Rename website failed. Most likely the website "+ newname + " exist. You cannnot to an exist website.", getDriver().getPageSource().contains("Rename website failed"));
+    	//System.out.println(getDriver().getPageSource());
     	
+    	// Throw an exception if response page contain text "Rename website failed"
+    	if (getDriver().getPageSource().contains("Rename website failed"))  {
+    		throw new RenameFailed();
+    	}
     	getDriver().findElement(By.xpath("/html/body/div[3]/div[1]/div/div/div/ul/li[2]/a")).click();
     }
     
+    public void navTo(String top, String second, String nav) throws InterruptedException {
+    	System.out.println("Edit nav "+ top + "-> " + second + " -> " + nav);
+    	mouseOver(By.linkText(top),By.linkText(second));
+    	getDriver().findElement(By.linkText(nav)).click();
+    }
+    
+    public void updateTitle(String newTitle) throws InterruptedException {
+    	navTo("Edit", "Home Page", "Edit Page Title");
+    	getDriver().findElement(By.xpath("/html/body/form/table/tbody/tr/td/input[1]")).clear();
+    	getDriver().findElement(By.xpath("/html/body/form/table/tbody/tr/td/input[1]")).sendKeys(newTitle);
+    	getDriver().findElement(By.xpath("/html/body/form/table/tbody/tr/td/input[2]")).click();
+    }
+    
+    // visit my website
+    public void getMyWebsite() {
+    	String parentHandle = getDriver().getWindowHandle(); // get the current window handle
+    	
+    	getDriver().findElement(By.xpath("/html/body/table/tbody/tr[2]/td/span/a")).click(); // click some link that opens a new window
+
+    	for (String winHandle : getDriver().getWindowHandles()) {
+    		System.out.println(winHandle);
+    		getDriver().switchTo().window(winHandle); // switch focus of WebDriver to the next found window handle (that's your newly opened window)
+    		//System.out.println("my title is : " + getDriver().getTitle());
+    	}
+
+    	//code to do something on new window
+    	System.out.println("my title is : " + getDriver().getTitle());
+
+    	getDriver().close(); // close newly opened window when done with it
+    	getDriver().switchTo().window(parentHandle); // switch back to the original window
+    }
+    
+ // visit my website
+    public String getMyWebsiteTitle() {
+    	String myTitle;
+    	String parentHandle = getDriver().getWindowHandle(); // get the current window handle
+    	
+    	getDriver().findElement(By.xpath("/html/body/table/tbody/tr[2]/td/span/a")).click(); // click some link that opens a new window
+
+    	for (String winHandle : getDriver().getWindowHandles()) {
+    		System.out.println(winHandle);
+    		getDriver().switchTo().window(winHandle); // switch focus of WebDriver to the next found window handle (that's your newly opened window)
+    		//System.out.println("my title is : " + getDriver().getTitle());
+    	}
+
+    	//code to do something on new window
+    	System.out.println("my title is : " + getDriver().getTitle());
+    	myTitle = getDriver().getTitle();
+
+    	getDriver().close(); // close newly opened window when done with it
+    	getDriver().switchTo().window(parentHandle); // switch back to the original window
+    	System.out.println("Switch to " + parentHandle);
+    	return myTitle;
+    }
     public void updateWebsite() throws InterruptedException {
     	//Thread.sleep(10000);
+    	goTo();
+    	Thread.sleep(1000);
+    	getDriver().findElement(By.xpath("/html/body/div[2]/nav/div/div[2]/ul/li[2]/a/span")).click();
     	getDriver().findElement(By.xpath("/html/body/div[3]/div[2]/div/div/table/tbody/tr[1]/td[1]/form/input[10]")).click();
-    	getDriver().findElement(By.linkText("Update Website"));
-    	getDriver().findElement(By.linkText("Logout")).click();
+    	getDriver().findElement(By.linkText("Update Website")).click();
+    	//getDriver().findElement(By.linkText("Logout")).click();
+    	
     	
     }
 
     // remove the first website
     public void removeWebsite() throws InterruptedException {
     	goTo();
+    	Thread.sleep(1000);
     	getDriver().findElement(By.xpath("/html/body/div[2]/nav/div/div[2]/ul/li[2]/a")).click();
     	mouseOver(By.xpath("/html/body/div[3]/div[1]/div/div/div/ul/li[1]/a/span"));
     	getDriver().findElement(By.xpath("/html/body/div[3]/div[1]/div/div/div/ul/li[1]/ul/li[1]/a/span")).click();

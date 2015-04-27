@@ -10,6 +10,7 @@ import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 
+import com.webcmsnow.ui.acceptance.test.common.RenameFailed;
 import com.webcmsnow.ui.acceptance.test.common.World;
 import com.webcmsnow.ui.acceptance.test.config.TestProperties;
 import com.webcmsnow.ui.acceptance.test.config.spring.TestConfig;
@@ -38,12 +39,12 @@ public class CreateWebsite extends AbstractStepDefinition {
 	public void login_on_with_web_master_role(String user, String password)
 			throws Throwable {
 		System.out.println(testProperties.getApplicationWebBaseUrl());
-		System.out.println(user+password);
+		System.out.println(user + password);
 		webCMSPage.goTo();
-    	webCMSPage.login(user, password);
-    	//webCMSPage.createWebsite("");
-    	//webCMSPage.renameWebsite("w1");
-    	//webCMSPage.removeWebsite();
+		webCMSPage.login(user, password);
+		// webCMSPage.createWebsite("");
+		// webCMSPage.renameWebsite("w1");
+		// webCMSPage.removeWebsite();
 	}
 
 	@Then("^Create a website$")
@@ -53,12 +54,32 @@ public class CreateWebsite extends AbstractStepDefinition {
 
 	@Then("^Rename a webeite to (.*?)$")
 	public void rename_a_webeite_to_w(String newWebSite) throws Throwable {
-		webCMSPage.renameWebsite(newWebSite);
+		// Try to rename a website, it would failed if newWebSite exist
+		// 
+		try {
+			webCMSPage.renameWebsite(newWebSite);
+		} catch (RenameFailed e1) {
+			// newWebSite exist
+			// Try recover by removeWebsite twice
+			webCMSPage.removeWebsite();  // Remove newly created website by previous test
+			webCMSPage.removeWebsite();  // Remove possible existing newWebSite
+			Assert.assertTrue("Reanme website failed. Most likely, it was fail last time. Problem might be fixed after this run. Try again.", false);
+
+		}
 	}
-	
+
 	@Then("^Update website$")
-	public void updatewebsite() throws Throwable {
+	public void updatewebsite() throws Throwable {	
 		webCMSPage.updateWebsite();
+		
+	}
+	@Then("^Update website title$")
+	public void updatewebsitetitle() throws Throwable {
+		String newTitle = "b0test";
+		//webCMSPage.updateWebsite();
+		webCMSPage.updateTitle(newTitle);
+		webCMSPage.updateWebsite();
+		Assert.assertTrue("Update page title and read back check and should be the same",webCMSPage.getMyWebsiteTitle().equals(newTitle));
 	}
 
 	@Then("^Remove newly createde website$")
@@ -66,5 +87,4 @@ public class CreateWebsite extends AbstractStepDefinition {
 		webCMSPage.removeWebsite();
 	}
 
-	
 }

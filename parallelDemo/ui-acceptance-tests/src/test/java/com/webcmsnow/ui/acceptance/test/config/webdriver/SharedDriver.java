@@ -52,13 +52,13 @@ public class SharedDriver extends EventFiringWebDriver {
         Runtime.getRuntime().addShutdownHook(CLOSE_THREAD);
     }
 
-    @Override
-    public void close() {
+   @Override
+    public void quit() {
         if (Thread.currentThread() != CLOSE_THREAD) {
-            throw new UnsupportedOperationException("You shouldn't close this WebDriver. It's shared and will close when the JVM exits.");
+            throw new UnsupportedOperationException("You shouldn't quit this WebDriver. It's shared and will close when the JVM exits.");
         }
         try {
-            super.close();
+            super.quit();
         } catch (Throwable e) {
             e.printStackTrace();
         }

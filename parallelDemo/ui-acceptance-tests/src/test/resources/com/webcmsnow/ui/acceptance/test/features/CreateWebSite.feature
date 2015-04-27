@@ -6,6 +6,7 @@ Feature: Demonstrate the UI create websites
     Then Create a website
     Then Rename a webeite to <newWebSiteName>
     Then Update website
+    Then Update website title
     Then Remove newly createde website
     
     Examples:
