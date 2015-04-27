@@ -17,7 +17,7 @@ import com.webcmsnow.ui.acceptance.test.config.TestProperties;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         tags = { "@ui-createwebsite", "~@ignore" },
-        plugin = { "json:target/ParallelUIDemonstrationAT.json", "html:target/cucumber-report/ParallelUIDemonstrationAT" })
-public class UIWebSiteCreate
+        plugin = { "json:target/CreateWebSite.json", "html:target/cucumber-report/CreateWebSite" })
+public class UIWebSiteCreateAT
 {
 }
