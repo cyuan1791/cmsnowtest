@@ -12,6 +12,6 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         tags = { "@ui-demo", "~@ignore" },
         plugin = { "json:target/UIDemonstrationAT.json", "html:target/cucumber-report/UIDemonstrationAT" })
-public class UIDemonstrationAT
+public class UIDemonstration
 {
 }

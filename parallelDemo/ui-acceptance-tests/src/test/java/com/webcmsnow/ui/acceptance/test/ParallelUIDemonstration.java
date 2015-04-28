@@ -18,6 +18,6 @@ import com.webcmsnow.ui.acceptance.test.config.TestProperties;
 @CucumberOptions(
         tags = { "@ui-demo", "~@ignore" },
         plugin = { "json:target/ParallelUIDemonstrationAT.json", "html:target/cucumber-report/ParallelUIDemonstrationAT" })
-public class ParallelUIDemonstrationAT
+public class ParallelUIDemonstration
 {
 }

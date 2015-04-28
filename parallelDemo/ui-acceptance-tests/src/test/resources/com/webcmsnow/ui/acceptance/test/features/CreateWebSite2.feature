@@ -1,7 +1,8 @@
-@ui-createwebsite
-Feature: Demonstrate the UI create websites w1
 
-  Scenario Outline: Create webwebsite from a file base template
+@ui-createwebsite-2
+Feature: Demonstrate the UI create websites w2
+
+  Scenario Outline: Create webwebsite from a file base template w2
     Given Login on <User> <Password> with web master role
     Then Create a website
     Then Rename a webeite to <newWebSiteName>
@@ -12,6 +13,5 @@ Feature: Demonstrate the UI create websites w1
     Examples:
     | User       | Password | newWebSiteName |
     #| user | passwd | temp | tmp |
-    | webMasterA | admin | w1 |
+    | webMasterB | admin | w2 |
     #| webMsaterB | admin |
-    
