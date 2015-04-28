@@ -5,7 +5,9 @@ package com.webcmsnow.ui.acceptance.test.interaction.objects;
 import org.junit.Assert;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Select;
 
 import com.webcmsnow.ui.acceptance.test.common.RenameFailed;
 
@@ -40,9 +42,17 @@ public class WebCMSPage extends AbstractPageObject {
         //Thread.sleep(100000);
         
     }
-    public void createWebsite(String template) throws InterruptedException {
+    public void createWebsite(String template, String Navigation) throws InterruptedException {
         // Create website
     	getDriver().findElement(By.xpath("//*[@id='search-type']/li[3]/a/span")).click();
+    	
+    	Select dropdownTemplate = new Select(getDriver().findElement(By.xpath(".//*[@id='Web_template']")));
+    	dropdownTemplate.selectByVisibleText(template);
+    	
+    	Select dropdownNav = new Select(getDriver().findElement(By.xpath(".//*[@id='Web_nav']")));
+    	dropdownNav.selectByVisibleText(Navigation);
+    	
+    	myTakeScreenShot(getDriver());
     	getDriver().findElement(By.name("yt0")).click();
     	getDriver().findElement(By.xpath("//*[@id='page']/div[2]/div/div/table/tbody/tr[1]/td[1]/form"));
         
@@ -129,7 +139,9 @@ public class WebCMSPage extends AbstractPageObject {
     	goTo();
     	Thread.sleep(1000);
     	getDriver().findElement(By.xpath("/html/body/div[2]/nav/div/div[2]/ul/li[2]/a/span")).click();
+    	Thread.sleep(1000);
     	getDriver().findElement(By.xpath("/html/body/div[3]/div[2]/div/div/table/tbody/tr[1]/td[1]/form/input[10]")).click();
+    	Thread.sleep(1000);
     	getDriver().findElement(By.linkText("Update Website")).click();
     	//getDriver().findElement(By.linkText("Logout")).click();
     	
@@ -144,8 +156,11 @@ public class WebCMSPage extends AbstractPageObject {
     	mouseOver(By.xpath("/html/body/div[3]/div[1]/div/div/div/ul/li[1]/a/span"));
     	getDriver().findElement(By.xpath("/html/body/div[3]/div[1]/div/div/div/ul/li[1]/ul/li[1]/a/span")).click();
     	getDriver().findElement(By.xpath("/html/body/div[3]/div[2]/div/div/div[2]/div/div/div[3]/div[1]/a")).click();
+    	Thread.sleep(1000);
     	getDriver().findElement(By.linkText("Delete Web")).click();
+    	Thread.sleep(1000);
     	Alert alert = getDriver().switchTo().alert();
+    	Thread.sleep(1000);
     	alert.accept();
     	//getDriver().switchTo().alert().dismiss();
     }

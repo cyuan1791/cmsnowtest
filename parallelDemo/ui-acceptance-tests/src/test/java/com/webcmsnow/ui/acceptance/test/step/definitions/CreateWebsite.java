@@ -1,12 +1,16 @@
 package com.webcmsnow.ui.acceptance.test.step.definitions;
 
 import cucumber.api.Scenario;
+import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 import org.junit.Assert;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriverException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 
@@ -32,6 +36,7 @@ public class CreateWebsite extends AbstractStepDefinition {
 	 */
 	@Before
 	public void before(Scenario scenario) {
+		this.webCMSPage.setSenario(scenario);
 		super.before(scenario);
 	}
 
@@ -47,44 +52,60 @@ public class CreateWebsite extends AbstractStepDefinition {
 		// webCMSPage.removeWebsite();
 	}
 
-	@Then("^Create a website$")
-	public void create_a_website() throws Throwable {
-		webCMSPage.createWebsite("");
+	@Then("^Create a website from (.*?) with (.*?)$")
+	public void create_a_website(String Template, String Navigation) throws Throwable {
+		System.out.println("Template: " + Template);
+		webCMSPage.createWebsite(Template, Navigation);
 	}
 
 	@Then("^Rename a webeite to (.*?)$")
 	public void rename_a_webeite_to_w(String newWebSite) throws Throwable {
 		// Try to rename a website, it would failed if newWebSite exist
-		// 
+		//
 		try {
 			webCMSPage.renameWebsite(newWebSite);
 		} catch (RenameFailed e1) {
 			// newWebSite exist
 			// Try recover by removeWebsite twice
-			webCMSPage.removeWebsite();  // Remove newly created website by previous test
-			webCMSPage.removeWebsite();  // Remove possible existing newWebSite
-			Assert.assertTrue("Reanme website failed. Most likely, it was fail last time. Problem might be fixed after this run. Try again.", false);
+			webCMSPage.removeWebsite(); // Remove newly created website by
+										// previous test
+			webCMSPage.removeWebsite(); // Remove possible existing newWebSite
+			Assert.assertTrue(
+					"Reanme website failed. Most likely, it was fail last time. Problem might be fixed after this run. Try again.",
+					false);
 
 		}
 	}
 
 	@Then("^Update website$")
-	public void updatewebsite() throws Throwable {	
+	public void updatewebsite() throws Throwable {
 		webCMSPage.updateWebsite();
-		
+
 	}
+
 	@Then("^Update website title$")
 	public void updatewebsitetitle() throws Throwable {
 		String newTitle = "b0test";
-		//webCMSPage.updateWebsite();
+		// webCMSPage.updateWebsite();
 		webCMSPage.updateTitle(newTitle);
 		webCMSPage.updateWebsite();
-		Assert.assertTrue("Update page title and read back check and should be the same",webCMSPage.getMyWebsiteTitle().equals(newTitle));
+		Assert.assertTrue(
+				"Update page title and read back check and should be the same",
+				webCMSPage.getMyWebsiteTitle().equals(newTitle));
 	}
 
 	@Then("^Remove newly createde website$")
 	public void remove_newly_createde_website() throws Throwable {
 		webCMSPage.removeWebsite();
+	}
+
+	@After
+	public void takeFailureScreenShot() {
+
+		// Output extra info to report
+		if (scenario.isFailed()) {
+			myTakeScreenShot(webCMSPage.getDriver());
+		}
 	}
 
 }

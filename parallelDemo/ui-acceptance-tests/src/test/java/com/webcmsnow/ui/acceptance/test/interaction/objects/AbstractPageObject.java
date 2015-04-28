@@ -2,14 +2,18 @@ package com.webcmsnow.ui.acceptance.test.interaction.objects;
 
 import com.webcmsnow.ui.acceptance.test.config.webdriver.WaitConditions;
 
+import cucumber.api.Scenario;
+
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.*;
+import org.openqa.selenium.WebDriver;
 
 /**
  * Reusable methods for all page objects
  */
 public abstract class AbstractPageObject {
+	protected Scenario scenario;
 	private String path;
 	private final WebDriver driver;
 	private final int waitTimeOutSeconds;
@@ -25,6 +29,9 @@ public abstract class AbstractPageObject {
 		this.waitTimeOutSeconds = waitTimeOutSeconds;
 	}
 
+	public void setSenario(Scenario scenario) {
+		this.scenario = scenario;
+	}
 	public void deleteAllCookies() {
 		getDriver().manage().deleteAllCookies();
 	}
@@ -124,4 +131,18 @@ public abstract class AbstractPageObject {
 					+ "\n\nPageSource:\n\n" + getDriver().getPageSource());
 		}
 	}
+
+	// take sceenshot, only works using "mvn install"
+    protected void myTakeScreenShot(WebDriver driver) {
+    	try {
+			scenario.write("From AbstractPageObject: Current Page URL is "
+					+ driver.getCurrentUrl());
+			byte[] screenshot = ((TakesScreenshot) driver)
+					.getScreenshotAs(OutputType.BYTES);
+			scenario.embed(screenshot, "image/png");
+		} catch (WebDriverException somePlatformsDontSupportScreenshots) {
+			System.err.println(somePlatformsDontSupportScreenshots
+					.getMessage());
+		}
+    }
 }

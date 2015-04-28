@@ -3,7 +3,12 @@ package com.webcmsnow.ui.acceptance.test.step.definitions;
 import com.webcmsnow.ui.acceptance.test.common.World;
 
 import cucumber.api.Scenario;
+import cucumber.api.java.After;
 
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -33,4 +38,19 @@ public abstract class AbstractStepDefinition {
         xml = "<textarea readonly>" + xml + "</textarea>";
         scenario.write(xml);
     }
+    
+    // // take sceenshot, only works using "mvn install"
+    protected void myTakeScreenShot(WebDriver driver) {
+    	try {
+			scenario.write("Current Page URL is "
+					+ driver.getCurrentUrl());
+			byte[] screenshot = ((TakesScreenshot) driver)
+					.getScreenshotAs(OutputType.BYTES);
+			scenario.embed(screenshot, "image/png");
+		} catch (WebDriverException somePlatformsDontSupportScreenshots) {
+			System.err.println(somePlatformsDontSupportScreenshots
+					.getMessage());
+		}
+    }
+    
 }
