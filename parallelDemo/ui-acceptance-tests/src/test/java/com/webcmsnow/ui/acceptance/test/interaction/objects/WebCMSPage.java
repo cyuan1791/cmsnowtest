@@ -63,6 +63,7 @@ public class WebCMSPage extends AbstractPageObject {
     }
     public void renameWebsite(String newname) throws RenameFailed, InterruptedException  {
     	// renmae the first website
+    	Thread.sleep(300);
     	goTo();
     	getDriver().findElement(By.xpath("/html/body/div[2]/nav/div/div[2]/ul/li[2]/a/span")).click();
     	mouseOver(By.xpath("/html/body/div[3]/div[1]/div/div/div/ul/li[1]/a/span"));
@@ -88,8 +89,14 @@ public class WebCMSPage extends AbstractPageObject {
     	mouseOver(By.linkText(top),By.linkText(second));
     	getDriver().findElement(By.linkText(nav)).click();
     }
+    public void navToById(String top, String second, String nav) throws InterruptedException {
+    	System.out.println("Edit nav by id"+ top + "-> " + second + " -> " + nav);
+    	mouseOver(By.xpath("//*[@id='" + top + "']/a"),By.linkText(second));
+    	getDriver().findElement(By.linkText(nav)).click();
+    }
     
     public void updateTitle(String newTitle) throws InterruptedException {
+    	//navTo("Edit", "Home Page", "Edit Page Title");
     	navTo("Edit", "Home Page", "Edit Page Title");
     	getDriver().findElement(By.xpath("/html/body/form/table/tbody/tr/td/input[1]")).clear();
     	getDriver().findElement(By.xpath("/html/body/form/table/tbody/tr/td/input[1]")).sendKeys(newTitle);
@@ -155,18 +162,18 @@ public class WebCMSPage extends AbstractPageObject {
     // remove the first website
     public void removeWebsite() throws InterruptedException {
     	goTo();
-    	Thread.sleep(500);
+    	Thread.sleep(1000);
     	getDriver().findElement(By.xpath("/html/body/div[2]/nav/div/div[2]/ul/li[2]/a")).click();
     	mouseOver(By.xpath("/html/body/div[3]/div[1]/div/div/div/ul/li[1]/a/span"));
-    	Thread.sleep(500);
+    	Thread.sleep(1000);
     	getDriver().findElement(By.xpath("/html/body/div[3]/div[1]/div/div/div/ul/li[1]/ul/li[1]/a/span")).click();
-    	Thread.sleep(500);
+    	Thread.sleep(1000);
     	getDriver().findElement(By.xpath("/html/body/div[3]/div[2]/div/div/div[2]/div/div/div[3]/div[1]/a")).click();
-    	Thread.sleep(500);
+    	Thread.sleep(1000);
     	getDriver().findElement(By.linkText("Delete Web")).click();
-    	Thread.sleep(500);
+    	Thread.sleep(100);
     	Alert alert = getDriver().switchTo().alert();
-    	Thread.sleep(500);
+    	Thread.sleep(100);
     	alert.accept();
     	//getDriver().switchTo().alert().dismiss();
     }

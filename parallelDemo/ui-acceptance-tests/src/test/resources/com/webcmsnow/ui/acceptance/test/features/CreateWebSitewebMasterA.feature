@@ -17,4 +17,3 @@ Feature: Demonstrate the UI create websites webMasterA
       | webMasterA | admin    | b0 Demo One ::horizontal:2               | nav6h0:horizontal:2:bootstrap 3 nav            | w1             |
       #| webMasterA | admin | Yii member and shop::horizontal:3 | nav6h0:horizontal:2:bootstrap 3 nav | w1 |
       #| webMasterA | admin    | Copy Gates Foundation::horizontal:2      | nav6h5:horizontal:3:bootstrap 3 Yamm3 MegaMenu | w1             |
-      
