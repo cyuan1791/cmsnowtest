@@ -62,13 +62,14 @@ public abstract class AbstractPageObject {
 		public void mouseOver(By top, By second) throws InterruptedException{
 			// ((JavascriptExecutor)driver).executeScript(javaScript,
 			// this.driver.findElement(by));
-			Actions builder = new Actions(driver); 
-	        WebElement mainmenu1 = driver.findElement(top);
-	        builder.moveToElement(mainmenu1 ).build().perform();
-	        Thread.sleep(1000); //add a wait
-	        WebElement submenu1=  driver.findElement(second); //Find the submenu
-	        builder.moveToElement(submenu1).click().build().perform();
-	        Thread.sleep(1000);
+			
+            WebElement mainmenu1 = driver.findElement(top);
+            Actions builder = new Actions(driver);
+            builder.moveToElement(mainmenu1 ).build().perform();
+            Thread.sleep(2000); //add a wait
+            WebElement submenu1=  driver.findElement(second); //Find the submenu
+            builder.moveToElement(submenu1).click().build().perform();
+            Thread.sleep(2000);
 		}
 
 	/**
