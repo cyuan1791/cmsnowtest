@@ -97,7 +97,11 @@ public class WebCMSPage extends AbstractPageObject {
     
     public void updateTitle(String newTitle) throws InterruptedException {
     	//navTo("Edit", "Home Page", "Edit Page Title");
+    	Thread.sleep(300);
     	navTo("Edit", "Home Page", "Edit Page Title");
+    	Thread.sleep(1000);
+    	//myTakeScreenShot(getDriver());
+    	//Thread.sleep(500);
     	getDriver().findElement(By.xpath("/html/body/form/table/tbody/tr/td/input[1]")).clear();
     	getDriver().findElement(By.xpath("/html/body/form/table/tbody/tr/td/input[1]")).sendKeys(newTitle);
     	getDriver().findElement(By.xpath("/html/body/form/table/tbody/tr/td/input[2]")).click();
