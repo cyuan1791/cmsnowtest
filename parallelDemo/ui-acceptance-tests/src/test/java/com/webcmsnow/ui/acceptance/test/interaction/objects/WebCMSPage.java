@@ -69,6 +69,7 @@ public class WebCMSPage extends AbstractPageObject {
     	mouseOver(By.xpath("/html/body/div[3]/div[1]/div/div/div/ul/li[1]/a/span"));
     	getDriver().findElement(By.xpath("/html/body/div[3]/div[1]/div/div/div/ul/li[1]/ul/li[1]/a/span")).click();
     	getDriver().findElement(By.xpath("/html/body/div[3]/div[2]/div/div/div[2]/div/div/div[3]/div[1]/a")).click();
+    	Thread.sleep(1000);
     	getDriver().findElement(By.linkText("Update Web")).click();
     	getDriver().findElement(By.xpath("/html/body/div[3]/div[2]/div/div/div[2]/div/div/form/div[2]/input")).clear();
     	getDriver().findElement(By.xpath("/html/body/div[3]/div[2]/div/div/div[2]/div/div/form/div[2]/input")).sendKeys(newname);
@@ -157,6 +158,7 @@ public class WebCMSPage extends AbstractPageObject {
     	Thread.sleep(1000);
     	getDriver().findElement(By.xpath("/html/body/div[3]/div[2]/div/div/table/tbody/tr[1]/td[1]/form/input[10]")).click();
     	Thread.sleep(1000);
+    	//myTakeScreenShot(getDriver());
     	getDriver().findElement(By.linkText("Update Website")).click();
     	//getDriver().findElement(By.linkText("Logout")).click();
     	
