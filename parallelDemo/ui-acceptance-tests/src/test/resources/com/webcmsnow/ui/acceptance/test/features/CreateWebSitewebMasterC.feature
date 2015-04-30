@@ -10,10 +10,5 @@ Feature: Demonstrate the UI create websites webMasterC
     Then Remove newly createde website
 
     Examples: 
-      | User       | Password | Template                                 | Navigation                                     | newWebSiteName |
-      | webMasterC | admin    | simple website for lessons::horizontal:1 | nav6h0:horizontal:2:bootstrap 3 nav            | w3             |
-      | webMasterC | admin    | bsuite/b0::both:2                        | nav6h0:horizontal:2:bootstrap 3 nav            | w3             |
-      | webMasterC | admin    | template b2::horizontal:3                | nav6h0:horizontal:2:bootstrap 3 nav            | w3             |
-      | webMasterC | admin    | b0 Demo One ::horizontal:2               | nav6h0:horizontal:2:bootstrap 3 nav            | w3             |
-      #| webMasterA | admin | Yii member and shop::horizontal:3 | nav6h0:horizontal:2:bootstrap 3 nav | w1 |
-      #| webMasterA | admin    | Copy Gates Foundation::horizontal:2      | nav6h5:horizontal:3:bootstrap 3 Yamm3 MegaMenu | w1             |
+      | User       | Password | Template                   | Navigation                          | newWebSiteName |
+      | webMasterC | admin    | b0 Demo One ::horizontal:2 | nav6h0:horizontal:2:bootstrap 3 nav | w3             |
