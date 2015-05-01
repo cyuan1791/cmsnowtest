@@ -54,8 +54,8 @@ public abstract class AbstractPageObject {
 
 	// Mouse over an webElement
 	public void mouseOver(By bid) throws InterruptedException {
-		// ((JavascriptExecutor)driver).executeScript(javaScript,
-		// this.driver.findElement(by));
+		
+		
 		//WebElement mytarget = driver.findElement(bid);
 		WebDriverWait waitTop = new WebDriverWait(driver, 5);
 
@@ -64,21 +64,14 @@ public abstract class AbstractPageObject {
 
 		Actions builder = new Actions(driver);
 		builder.moveToElement(mytarget).perform();
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 	}
 
 	// Mouse over second level
 	public void mouseOver(By top, By second) throws InterruptedException {
 		// ((JavascriptExecutor)driver).executeScript(javaScript,
 		// this.driver.findElement(by));
-		/*
-		 * WebElement mainmenu1 = driver.findElement(top); Actions builder = new
-		 * Actions(driver); builder.moveToElement(mainmenu1 ).build().perform();
-		 * WebDriverWait wait = new WebDriverWait(driver, 5); WebElement
-		 * submenu1 =
-		 * wait.until(ExpectedConditions.visibilityOfElementLocated(second));
-		 * builder.moveToElement(submenu1).click().build().perform();
-		 */
+		
 		//WebElement mainmenu1 = driver.findElement(top);
 		WebDriverWait waitTop = new WebDriverWait(driver, 5);
 
@@ -88,7 +81,7 @@ public abstract class AbstractPageObject {
 		Actions builder = new Actions(driver);
 		builder.moveToElement(mainmenu1).build().perform();
 
-		Thread.sleep(2500);
+		//Thread.sleep(2500);
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 
 		WebElement submenu1 = wait.until(ExpectedConditions
@@ -96,7 +89,7 @@ public abstract class AbstractPageObject {
 
 		builder.moveToElement(submenu1).click().build().perform();
 		//builder.moveToElement(submenu1).click();
-		 Thread.sleep(1000);
+		// Thread.sleep(1000);
 
 	}
 
