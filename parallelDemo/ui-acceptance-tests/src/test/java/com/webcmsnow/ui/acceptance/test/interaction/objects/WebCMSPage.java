@@ -53,20 +53,20 @@ public class WebCMSPage extends AbstractPageObject {
 		getDriver()
 				.findElement(By.xpath("//*[@id='search-type']/li[3]/a/span"))
 				.click();
-		Thread.sleep(500);
+		//Thread.sleep(500);
 		Select dropdownTemplate = new Select(getDriver().findElement(
 				By.xpath(".//*[@id='Web_template']")));
-		Thread.sleep(500);
+		//Thread.sleep(500);
 		dropdownTemplate.selectByVisibleText(template);
-		Thread.sleep(500);
+		//Thread.sleep(500);
 		Select dropdownNav = new Select(getDriver().findElement(
 				By.xpath(".//*[@id='Web_nav']")));
 		dropdownNav.selectByVisibleText(Navigation);
 
 		// myTakeScreenShot(getDriver());
-		Thread.sleep(500);
+		//Thread.sleep(500);
 		getDriver().findElement(By.name("yt0")).click();
-		Thread.sleep(5000);
+		//Thread.sleep(5000);
 		getDriver()
 				.findElement(
 						By.xpath("//*[@id='page']/div[2]/div/div/table/tbody/tr[1]/td[1]/form"));
@@ -77,7 +77,7 @@ public class WebCMSPage extends AbstractPageObject {
 	public void renameWebsite(String newname) throws RenameFailed,
 			InterruptedException {
 		// renmae the first website
-		Thread.sleep(300);
+		//Thread.sleep(300);
 		goTo();
 		getDriver().findElement(
 				By.xpath("/html/body/div[2]/nav/div/div[2]/ul/li[2]/a/span"))
@@ -88,13 +88,20 @@ public class WebCMSPage extends AbstractPageObject {
 				.findElement(
 						By.xpath("/html/body/div[3]/div[1]/div/div/div/ul/li[1]/ul/li[1]/a/span"))
 				.click();
-		Thread.sleep(500);
+		//Thread.sleep(500);
 		getDriver()
 				.findElement(
 						By.xpath("/html/body/div[3]/div[2]/div/div/div[2]/div/div/div[3]/div[1]/a"))
 				.click();
-		Thread.sleep(500);
-		getDriver().findElement(By.linkText("Update Web")).click();
+		//Thread.sleep(500);
+		WebDriverWait waitTop = new WebDriverWait(getDriver(), 30);
+
+		WebElement updateLink = waitTop.until(ExpectedConditions
+				.visibilityOfElementLocated(By.linkText("Update Web")));
+		updateLink.click();
+		//getDriver().findElement(By.linkText("Update Web")).click();
+		
+		
 		getDriver()
 				.findElement(
 						By.xpath("/html/body/div[3]/div[2]/div/div/div[2]/div/div/form/div[2]/input"))
@@ -104,7 +111,7 @@ public class WebCMSPage extends AbstractPageObject {
 						By.xpath("/html/body/div[3]/div[2]/div/div/div[2]/div/div/form/div[2]/input"))
 				.sendKeys(newname);
 		getDriver().findElement(By.name("yt0")).click();
-		Thread.sleep(500);
+		//Thread.sleep(500);
 		// make sure rename is successful
 		// System.out.println(getDriver().getPageSource());
 
@@ -133,7 +140,7 @@ public class WebCMSPage extends AbstractPageObject {
 						.visibilityOfElementLocated(By.linkText(nav)));
 				submenu1.click();
 				//getDriver().findElement(By.linkText(nav)).click();
-				Thread.sleep(500);
+				//Thread.sleep(500);
 				break;
 			} catch (Exception e) {
 				getDriver().navigate().refresh();
@@ -158,7 +165,7 @@ public class WebCMSPage extends AbstractPageObject {
 				WebElement submenu1 = wait.until(ExpectedConditions
 						.visibilityOfElementLocated(By.linkText(second)));
 				submenu1.click();
-				Thread.sleep(1000);
+				//Thread.sleep(1000);
 				break;
 			} catch (Exception e) {
 				getDriver().navigate().refresh();
@@ -184,9 +191,9 @@ public class WebCMSPage extends AbstractPageObject {
 
 	public void updateTitle(String newTitle) throws InterruptedException {
 		// navTo("Edit", "Home Page", "Edit Page Title");
-		Thread.sleep(300);
+		//Thread.sleep(300);
 		navTo("Edit", "Home Page", "Edit Page Title");
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		// myTakeScreenShot(getDriver());
 		// Thread.sleep(500);
 		getDriver().findElement(
@@ -272,16 +279,16 @@ public class WebCMSPage extends AbstractPageObject {
 	public void updateWebsite() throws InterruptedException {
 		// Thread.sleep(10000);
 		goTo();
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		getDriver().findElement(
 				By.xpath("/html/body/div[2]/nav/div/div[2]/ul/li[2]/a/span"))
 				.click();
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		getDriver()
 				.findElement(
 						By.xpath("/html/body/div[3]/div[2]/div/div/table/tbody/tr[1]/td[1]/form/input[10]"))
 				.click();
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		// myTakeScreenShot(getDriver());
 		getDriver().findElement(By.linkText("Update Website")).click();
 		// getDriver().findElement(By.linkText("Logout")).click();
@@ -291,27 +298,27 @@ public class WebCMSPage extends AbstractPageObject {
 	// remove the first website
 	public void removeWebsite() throws InterruptedException {
 		goTo();
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		getDriver().findElement(
 				By.xpath("/html/body/div[2]/nav/div/div[2]/ul/li[2]/a"))
 				.click();
 		mouseOver(By
 				.xpath("/html/body/div[3]/div[1]/div/div/div/ul/li[1]/a/span"));
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		getDriver()
 				.findElement(
 						By.xpath("/html/body/div[3]/div[1]/div/div/div/ul/li[1]/ul/li[1]/a/span"))
 				.click();
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		getDriver()
 				.findElement(
 						By.xpath("/html/body/div[3]/div[2]/div/div/div[2]/div/div/div[3]/div[1]/a"))
 				.click();
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		getDriver().findElement(By.linkText("Delete Web")).click();
-		Thread.sleep(100);
+		//Thread.sleep(100);
 		Alert alert = getDriver().switchTo().alert();
-		Thread.sleep(100);
+		//Thread.sleep(100);
 		alert.accept();
 		// getDriver().switchTo().alert().dismiss();
 	}
