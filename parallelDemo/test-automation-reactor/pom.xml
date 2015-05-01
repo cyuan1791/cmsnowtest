@@ -23,7 +23,7 @@
 		<jmeter.maven.plugin.version>1.10.0</jmeter.maven.plugin.version>
 		<jmeter.graph.maven.plugin.version>0.1.0</jmeter.graph.maven.plugin.version>
 		<jmeter.plugins.version>1.0.0</jmeter.plugins.version>
-		<acceptance.test.parallel.count>3</acceptance.test.parallel.count>
+		<acceptance.test.parallel.count>4</acceptance.test.parallel.count>
 	</properties>
 
 	<build>

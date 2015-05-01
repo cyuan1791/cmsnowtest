@@ -37,8 +37,8 @@ public class SharedDriver extends EventFiringWebDriver {
 	    //driver = new FirefoxDriver();
 		//driver = new ChromeDriver();
         if (REAL_DRIVER == null) {
-            REAL_DRIVER = new FirefoxDriver();
-        	//REAL_DRIVER = new ChromeDriver();
+            //REAL_DRIVER = new FirefoxDriver();
+        	REAL_DRIVER = new ChromeDriver();
         	//REAL_DRIVER  = new RemoteWebDriver(
               //      new URL("http://vm1:4444/wd/hub"), 
                //     DesiredCapabilities.firefox());

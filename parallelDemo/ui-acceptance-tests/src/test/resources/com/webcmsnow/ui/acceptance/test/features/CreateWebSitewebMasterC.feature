@@ -6,6 +6,7 @@ Feature: Demonstrate the UI create websites webMasterC
     Then Create a website from <Template> with <Navigation>
     Then Rename a webeite to <newWebSiteName>
     Then Update website
+    Then Naviage menu pages
     Then Update website title
     Then Remove newly createde website
 
