@@ -54,8 +54,10 @@ public class WebCMSPage extends AbstractPageObject {
 				.findElement(By.xpath("//*[@id='search-type']/li[3]/a/span"))
 				.click();
 		//Thread.sleep(500);
-		Select dropdownTemplate = new Select(getDriver().findElement(
-				By.xpath(".//*[@id='Web_template']")));
+		WebDriverWait wait = new WebDriverWait(getDriver(), 30);
+		WebElement elem = wait.until(ExpectedConditions
+				.visibilityOfElementLocated(By.xpath(".//*[@id='Web_template']")));
+		Select dropdownTemplate = new Select(elem);
 		//Thread.sleep(500);
 		dropdownTemplate.selectByVisibleText(template);
 		//Thread.sleep(500);
@@ -89,10 +91,12 @@ public class WebCMSPage extends AbstractPageObject {
 						By.xpath("/html/body/div[3]/div[1]/div/div/div/ul/li[1]/ul/li[1]/a/span"))
 				.click();
 		//Thread.sleep(500);
-		getDriver()
-				.findElement(
-						By.xpath("/html/body/div[3]/div[2]/div/div/div[2]/div/div/div[3]/div[1]/a"))
-				.click();
+		WebDriverWait wait = new WebDriverWait(getDriver(), 30);
+		WebElement elem = wait.until(ExpectedConditions
+				.visibilityOfElementLocated(By.xpath("/html/body/div[3]/div[2]/div/div/div[2]/div/div/div[3]/div[1]/a")));
+		elem.click();
+		
+		
 		//Thread.sleep(500);
 		WebDriverWait waitTop = new WebDriverWait(getDriver(), 30);
 
