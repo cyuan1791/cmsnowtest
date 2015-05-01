@@ -18,7 +18,7 @@ import com.webcmsnow.ui.acceptance.test.common.RenameFailed;
 import com.webcmsnow.ui.acceptance.test.common.World;
 import com.webcmsnow.ui.acceptance.test.config.TestProperties;
 import com.webcmsnow.ui.acceptance.test.config.spring.TestConfig;
-import com.webcmsnow.ui.acceptance.test.interaction.objects.GoogleSearchPage;
+
 import com.webcmsnow.ui.acceptance.test.interaction.objects.WebCMSPage;
 
 import static org.junit.Assert.*;
