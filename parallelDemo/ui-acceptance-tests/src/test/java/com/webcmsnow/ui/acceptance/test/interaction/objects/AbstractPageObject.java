@@ -44,8 +44,18 @@ public abstract class AbstractPageObject {
 		return driver;
 	}
 
-	public void goTo() {
+	public void goToManage() {
+		// goto http://manage.vm2
 		getDriver().navigate().to(path);
+		// Click WebSite tab
+		getDriver().findElement(
+				By.xpath("/html/body/div[2]/nav/div/div[2]/ul/li[2]/a/span"))
+				.click();
+	}
+	public void goHome() {
+		// goto http://manage.vm2
+		getDriver().navigate().to(path);
+		
 	}
 
 	public String getPath() {
@@ -97,7 +107,7 @@ public abstract class AbstractPageObject {
 	 * Go to page and wait until url reflects expected page (or timeout reached)
 	 */
 	public void goToAndWait() {
-		goTo();
+		goToManage();
 		ensure_is_current();
 	}
 

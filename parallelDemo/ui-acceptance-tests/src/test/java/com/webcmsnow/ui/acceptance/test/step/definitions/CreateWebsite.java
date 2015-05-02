@@ -1,5 +1,7 @@
 package com.webcmsnow.ui.acceptance.test.step.definitions;
 
+import java.util.List;
+
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
@@ -8,9 +10,11 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 
@@ -18,7 +22,6 @@ import com.webcmsnow.ui.acceptance.test.common.RenameFailed;
 import com.webcmsnow.ui.acceptance.test.common.World;
 import com.webcmsnow.ui.acceptance.test.config.TestProperties;
 import com.webcmsnow.ui.acceptance.test.config.spring.TestConfig;
-
 import com.webcmsnow.ui.acceptance.test.interaction.objects.WebCMSPage;
 
 import static org.junit.Assert.*;
@@ -45,7 +48,7 @@ public class CreateWebsite extends AbstractStepDefinition {
 			throws Throwable {
 		System.out.println(testProperties.getApplicationWebBaseUrl());
 		System.out.println(user + password);
-		webCMSPage.goTo();
+		webCMSPage.goHome();
 		webCMSPage.login(user, password);
 		// webCMSPage.createWebsite("");
 		// webCMSPage.renameWebsite("w1");
@@ -60,21 +63,16 @@ public class CreateWebsite extends AbstractStepDefinition {
 
 	@Then("^Rename a webeite to (.*?)$")
 	public void rename_a_webeite_to_w(String newWebSite) throws Throwable {
-		// Try to rename a website, it would failed if newWebSite exist
-		//
-		try {
-			webCMSPage.renameWebsite(newWebSite);
-		} catch (RenameFailed e1) {
-			// newWebSite exist
-			// Try recover by removeWebsite twice
-			webCMSPage.removeWebsite(); // Remove newly created website by
-										// previous test
-			webCMSPage.removeWebsite(); // Remove possible existing newWebSite
-			Assert.assertTrue(
-					"Reanme website failed. Most likely, it was fail last time. Problem might be fixed after this run. Try again.",
-					false);
-
+		
+		// Check if newWebSite exist
+		List<WebElement> elems = webCMSPage.getDriver().findElements(By.linkText(newWebSite));
+		if (elems.size() > 0) {
+			// newWebSite exist, remove it
+			System.out.println("Website exist. Remove it.");
+			webCMSPage.removeWebsite(newWebSite);
 		}
+		webCMSPage.renameWebsite(newWebSite);
+		
 	}
 	@Then("^Naviage menu pages$")
 	public void navwebsite() throws Throwable {
@@ -124,7 +122,7 @@ public class CreateWebsite extends AbstractStepDefinition {
 
 	@Then("^Remove newly createde website$")
 	public void remove_newly_createde_website() throws Throwable {
-		webCMSPage.removeWebsite();
+		webCMSPage.removeWebsite("");
 	}
 
 	@After
@@ -134,6 +132,7 @@ public class CreateWebsite extends AbstractStepDefinition {
 		if (scenario.isFailed()) {
 			myTakeScreenShot(webCMSPage.getDriver());
 		}
+		webCMSPage.getDriver().quit();
 	}
 
 }
