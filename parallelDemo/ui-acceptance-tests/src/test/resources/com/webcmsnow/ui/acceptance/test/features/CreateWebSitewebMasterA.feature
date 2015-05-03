@@ -7,7 +7,7 @@ Feature: Demonstrate the UI create websites webMasterA
     Then Rename a webeite to <newWebSiteName>
     Then Update website
     Then Naviage menu pages
-    Then Update website title
+    Then Change website title
     Then Remove newly createde website
 
     Examples: 

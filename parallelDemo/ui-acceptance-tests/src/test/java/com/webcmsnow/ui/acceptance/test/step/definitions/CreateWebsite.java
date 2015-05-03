@@ -58,7 +58,7 @@ public class CreateWebsite extends AbstractStepDefinition {
 	@Then("^Create a website from (.*?) with (.*?)$")
 	public void create_a_website(String Template, String Navigation) throws Throwable {
 		System.out.println("Template: " + Template);
-		webCMSPage.createWebsite(Template, Navigation);
+		webCMSPage.createWebsiteFromFileTemplate(Template, Navigation);
 	}
 
 	@Then("^Rename a webeite to (.*?)$")
@@ -109,11 +109,11 @@ public class CreateWebsite extends AbstractStepDefinition {
 
 	}
 
-	@Then("^Update website title$")
+	@Then("^Change website title$")
 	public void updatewebsitetitle() throws Throwable {
 		String newTitle = "b0test";
 		// webCMSPage.updateWebsite();
-		webCMSPage.updateTitle(newTitle);
+		webCMSPage.changeWebsiteTitle(newTitle);
 		webCMSPage.updateWebsite();
 		Assert.assertTrue(
 				"Update page title and read back check and should be the same",

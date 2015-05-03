@@ -91,7 +91,7 @@ public abstract class AbstractPageObject {
 		Actions builder = new Actions(driver);
 		builder.moveToElement(mainmenu1).build().perform();
 
-		Thread.sleep(1000);
+		Thread.sleep(1000); // needed for Chrome Browser
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 
 		WebElement submenu1 = wait.until(ExpectedConditions
@@ -99,7 +99,7 @@ public abstract class AbstractPageObject {
 
 		builder.moveToElement(submenu1).click().build().perform();
 		//builder.moveToElement(submenu1).click();
-		Thread.sleep(1000);
+		Thread.sleep(1000); //needed Chrome 
 
 	}
 
