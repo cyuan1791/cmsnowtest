@@ -133,20 +133,22 @@ public class WebCMSPage extends AbstractPageObject {
 			throws InterruptedException {
 
 		int count = 0;
-		int maxTries = 3;
+		int maxTries = 5;
 		while (true) {
 			try {
 				System.out.println("Edit nav " + top + "-> " + second + " -> "
 						+ nav);
 				mouseOver(By.linkText(top), By.linkText(second));
-				WebDriverWait wait = new WebDriverWait(getDriver(), 20);
-				WebElement submenu1 = wait.until(ExpectedConditions
-						.visibilityOfElementLocated(By.linkText(nav)));
-				submenu1.click();
-				// getDriver().findElement(By.linkText(nav)).click();
+				//WebDriverWait wait = new WebDriverWait(getDriver(), 20);
+				//WebElement submenu1 = wait.until(ExpectedConditions
+				//		.visibilityOfElementLocated(By.linkText(nav)));
+				//submenu1.click();
+				getDriver().findElement(By.linkText(nav)).click();
 				// Thread.sleep(500);
 				break;
 			} catch (Exception e) {
+				Thread.sleep(1000);
+				System.out.println("Retry : " + count);
 				getDriver().navigate().refresh();
 				if (++count == maxTries)
 					throw e;

@@ -1,6 +1,7 @@
 package com.webcmsnow.ui.acceptance.test.config.webdriver;
 
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -43,11 +44,12 @@ public class SharedDriver extends EventFiringWebDriver {
 		// driver = new FirefoxDriver();
 		// driver = new ChromeDriver();
 		if (REAL_DRIVER == null) {
-			REAL_DRIVER = new FirefoxDriver();
-			// REAL_DRIVER = new ChromeDriver();
+			//REAL_DRIVER = new FirefoxDriver();
+			 REAL_DRIVER = new ChromeDriver();
 			// REAL_DRIVER = new RemoteWebDriver(
 			// new URL("http://vm1:4444/wd/hub"),
 			// DesiredCapabilities.firefox());
+			REAL_DRIVER.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 
 		}
 		return REAL_DRIVER;
