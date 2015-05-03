@@ -217,7 +217,7 @@ public class WebCMSPage extends AbstractPageObject {
 	}
 
 	// visit my website
-	public String getMyWebsiteTitle() {
+	public String getMyWebsiteTitle() throws InterruptedException {
 		String myTitle;
 		String parentHandle = getDriver().getWindowHandle(); // get the current
 																// window handle
@@ -231,7 +231,7 @@ public class WebCMSPage extends AbstractPageObject {
 																				// a
 																				// new
 																				// window
-
+		Thread.sleep(10000);
 		for (String winHandle : getDriver().getWindowHandles()) {
 			System.out.println(winHandle);
 			getDriver().switchTo().window(winHandle); // switch focus of
@@ -248,6 +248,7 @@ public class WebCMSPage extends AbstractPageObject {
 		myTitle = getDriver().getTitle();
 
 		getDriver().close(); // close newly opened window when done with it
+		Thread.sleep(10000);
 		getDriver().switchTo().window(parentHandle); // switch back to the
 														// original window
 		System.out.println("Switch to " + parentHandle);
