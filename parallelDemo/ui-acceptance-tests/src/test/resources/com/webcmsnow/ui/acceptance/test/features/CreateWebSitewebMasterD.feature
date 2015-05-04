@@ -6,8 +6,7 @@ Feature: Demonstrate the UI create websites webMasterD
     Then Create a website from <Template> with <Navigation>
     Then Rename a webeite to <newWebSiteName>
     Then Update website
-    Then Naviage menu pages
-    Then Change website title
+    Then Check basic_01 and basic_02 modules
     Then Remove newly createde website
 
     Examples: 
