@@ -54,27 +54,25 @@ public class WebCMSPage extends AbstractPageObject {
 		getDriver()
 				.findElement(By.xpath("//*[@id='search-type']/li[3]/a/span"))
 				.click();
-		
+
 		WebDriverWait wait = new WebDriverWait(getDriver(), 30);
 		WebElement elem = wait.until(ExpectedConditions
 				.visibilityOfElementLocated(By
 						.xpath(".//*[@id='Web_template']")));
 		Select dropdownTemplate = new Select(elem);
-		
+
 		dropdownTemplate.selectByVisibleText(template);
-		
+
 		Select dropdownNav = new Select(getDriver().findElement(
 				By.xpath(".//*[@id='Web_nav']")));
 		dropdownNav.selectByVisibleText(Navigation);
 
-		
 		getDriver().findElement(By.name("yt0")).click();
-	
+
 		getDriver()
 				.findElement(
 						By.xpath("//*[@id='page']/div[2]/div/div/table/tbody/tr[1]/td[1]/form"));
 
-		
 	}
 
 	public void renameWebsite(String newname) throws RenameFailed,
@@ -87,6 +85,7 @@ public class WebCMSPage extends AbstractPageObject {
 		mouseOver(By
 				.xpath("/html/body/div[3]/div[1]/div/div/div/ul/li[1]/a/span"));
 
+		Thread.sleep(300);
 		// locate Manage WebSite and click
 		getDriver()
 				.findElement(
@@ -96,8 +95,7 @@ public class WebCMSPage extends AbstractPageObject {
 		// Thread.sleep(500);
 		WebDriverWait wait = new WebDriverWait(getDriver(), 20);
 		WebElement elem = wait
-				.until(ExpectedConditions
-				.visibilityOfElementLocated(By
+				.until(ExpectedConditions.visibilityOfElementLocated(By
 						.xpath("/html/body/div[3]/div[2]/div/div/div[2]/div/div/div[3]/div[1]/a")));
 		elem.click();
 
@@ -132,25 +130,47 @@ public class WebCMSPage extends AbstractPageObject {
 	// Three level navigation
 	public void navTo(String top, String second, String nav)
 			throws InterruptedException {
+		int count = 0;
+		int maxTries = 3;
+		while (true) {
+			try {
+				System.out.println(count + " : Edit nav " + top + "-> "
+						+ second + " -> " + nav);
+				mouseOver(By.linkText(top), By.linkText(second));
 
-		System.out.println("Edit nav " + top + "-> " + second + " -> " + nav);
-		mouseOver(By.linkText(top), By.linkText(second));
-		
-		getDriver().findElement(By.linkText(nav)).click();
-		
+				getDriver().findElement(By.linkText(nav)).click();
+				break;
+			} catch (Exception e) {
+				// handle exception
+				if (++count == maxTries)
+					throw e;
+			}
+		}
+
 	}
 
 	// Two level navigation
 	public void navTo(String top, String second) throws InterruptedException {
 
-		System.out.println("Edit nav " + top + "-> " + second);
+		int count = 0;
+		int maxTries = 3;
+		while (true) {
+			try {
+				System.out.println(count + " : Edit nav " + top + "-> " + second);
 
-		mouseOver(By.linkText(top));
-		WebDriverWait wait = new WebDriverWait(getDriver(), 5);
+				mouseOver(By.linkText(top));
+				WebDriverWait wait = new WebDriverWait(getDriver(), 5);
 
-		WebElement submenu1 = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.linkText(second)));
-		submenu1.click();
+				WebElement submenu1 = wait.until(ExpectedConditions
+						.visibilityOfElementLocated(By.linkText(second)));
+				submenu1.click();
+				break;
+			} catch (Exception e) {
+				// handle exception
+				if (++count == maxTries)
+					throw e;
+			}
+		}
 
 	}
 
@@ -231,7 +251,7 @@ public class WebCMSPage extends AbstractPageObject {
 																				// a
 																				// new
 																				// window
-		Thread.sleep(10000);
+		// Thread.sleep(10000);
 		for (String winHandle : getDriver().getWindowHandles()) {
 			System.out.println(winHandle);
 			getDriver().switchTo().window(winHandle); // switch focus of
@@ -248,7 +268,7 @@ public class WebCMSPage extends AbstractPageObject {
 		myTitle = getDriver().getTitle();
 
 		getDriver().close(); // close newly opened window when done with it
-		Thread.sleep(10000);
+		// Thread.sleep(10000);
 		getDriver().switchTo().window(parentHandle); // switch back to the
 														// original window
 		System.out.println("Switch to " + parentHandle);

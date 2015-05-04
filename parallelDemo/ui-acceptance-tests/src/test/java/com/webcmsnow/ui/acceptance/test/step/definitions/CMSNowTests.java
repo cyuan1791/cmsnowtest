@@ -80,6 +80,12 @@ public class CMSNowTests extends AbstractStepDefinition {
 		CMSNavigate.basicNavigate(webCMSPage);
     	
 	}
+	
+	@Then("^Check 00_basic modules$")
+	public void check_00basicmodule() throws Throwable {
+		CMSNavigate.check_00_basic_module(webCMSPage);
+    	
+	}
 
 
 	@Then("^Update website$")
