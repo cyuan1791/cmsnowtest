@@ -91,6 +91,12 @@ public class CMSNowTests extends AbstractStepDefinition {
 		CMSNavigate.check_other1_modules(webCMSPage);
     	
 	}
+	
+	@Then("^Check 02_compose, 03_animate, 04_link and 05_misc modules$")
+	public void check_module_rest() throws Throwable {
+		CMSNavigate.check_module_others(webCMSPage);
+    	
+	}
 
 
 

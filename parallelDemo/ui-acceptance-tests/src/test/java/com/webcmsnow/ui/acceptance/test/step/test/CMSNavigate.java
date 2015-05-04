@@ -44,21 +44,7 @@ public class CMSNavigate {
 				"b_slider: bootstrap slider", "b_tab: bootstrap tab",
 				"b_tinyMCE:Tiny MCE Editor " };
 
-		for (String cmsModule : cmsModules) {
-			System.out.println(cmsModule);
-			webCMSPage.navTo("Root Layout Page");
-			webCMSPage.getDriver().findElement(By.id("showemptyarea")).click();
-			webCMSPage.getDriver().findElement(By.id("container-1:2")).click();
-
-			selectModule(webCMSPage, "00_basic", cmsModule);
-			webCMSPage.navTo("Update Website");
-			webCMSPage.navTo("Root Layout Page");
-			webCMSPage.getDriver().findElement(By.id("hideemptyarea")).click();
-			webCMSPage.getDriver().findElement(By.id("container-1:2")).click();
-			webCMSPage.getDriver().findElement(By.id("DeleteArea")).click();
-			webCMSPage.getDriver().findElement(By.id("deleteArea")).click();
-
-		}
+		addAndDeleteModules(webCMSPage, cmsModules, "00_basic");
 
 	}
 
@@ -77,37 +63,62 @@ public class CMSNavigate {
 				"b_itinerary:itineraries",
 				"b_mp3PlayDownload: play and download mp3 audio with pagination" };
 
-		for (String cmsModule : cmsbasic_01Modules) {
+		addAndDeleteModules(webCMSPage, cmsbasic_01Modules, "01_basic");
+
+		addAndDeleteModules(webCMSPage, cmsbasic_02Modules, "02_basic");
+
+	}
+
+	// add, update and delete 02_compose, 03_animate, 04_link, and 05_misc
+	public static void check_module_others(WebCMSPage webCMSPage)
+			throws InterruptedException {
+
+		// 02_compose
+		String[] cmsModulesCompose = {
+				"compose_new: Merge or compose multiple images to one image",
+				"multi_img_merge: Merge or compose multiple images to one image" };
+
+		addAndDeleteModules(webCMSPage, cmsModulesCompose, "02_compose");
+
+		// 03_animated
+		String[] cmsModulesAnimate = { "b_sliderAnimated: bootstrap slider animated" };
+
+		addAndDeleteModules(webCMSPage, cmsModulesAnimate, "03_animate");
+
+		// 04_link
+		String[] cmsModulesLink = { "b_linkList: Summary of List from link" };
+
+		addAndDeleteModules(webCMSPage, cmsModulesLink, "04_link");
+
+		// 05_misc
+		String[] cmsModulesMisc = { "aImage:an image ",
+				"allEditor:HTML/PHP JavaScript editor",
+				"angular_blog_edit:blog editor",
+				"b_restaurantMenuItems:Add a category ",
+				"fullCalendar:fullCalendar", "googleMap:Google MAP ",
+				"minicartItem: add minicart items "};
+
+		addAndDeleteModules(webCMSPage, cmsModulesMisc, "05_misc");
+
+	}
+
+	private static void addAndDeleteModules(WebCMSPage webCMSPage,
+			String[] cmsModules, String mod) throws InterruptedException {
+		for (String cmsModule : cmsModules) {
 			System.out.println(cmsModule);
 			webCMSPage.navTo("Root Layout Page");
 			webCMSPage.getDriver().findElement(By.id("showemptyarea")).click();
 			webCMSPage.getDriver().findElement(By.id("container-1:2")).click();
 
-			selectModule(webCMSPage, "01_basic", cmsModule);
+			selectModule(webCMSPage, mod, cmsModule);
 			webCMSPage.navTo("Update Website");
 			webCMSPage.navTo("Root Layout Page");
 			webCMSPage.getDriver().findElement(By.id("hideemptyarea")).click();
 			webCMSPage.getDriver().findElement(By.id("container-1:2")).click();
 			webCMSPage.getDriver().findElement(By.id("DeleteArea")).click();
 			webCMSPage.getDriver().findElement(By.id("deleteArea")).click();
-		}
-
-		for (String cmsModule : cmsbasic_02Modules) {
-			System.out.println(cmsModule);
-			webCMSPage.navTo("Root Layout Page");
-			webCMSPage.getDriver().findElement(By.id("showemptyarea")).click();
-			webCMSPage.getDriver().findElement(By.id("container-1:2")).click();
-
-			selectModule(webCMSPage, "02_basic", cmsModule);
-			webCMSPage.navTo("Update Website");
-			webCMSPage.navTo("Root Layout Page");
-			webCMSPage.getDriver().findElement(By.id("hideemptyarea")).click();
-			webCMSPage.getDriver().findElement(By.id("container-1:2")).click();
-			webCMSPage.getDriver().findElement(By.id("DeleteArea")).click();
-			webCMSPage.getDriver().findElement(By.id("deleteArea")).click();
 
 		}
-
 	}
 
 	// Select a module from a mod group
