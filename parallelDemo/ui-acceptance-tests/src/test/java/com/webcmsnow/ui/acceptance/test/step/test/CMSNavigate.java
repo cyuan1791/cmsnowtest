@@ -38,11 +38,11 @@ public class CMSNavigate {
 			throws InterruptedException {
 		String[] cmsModules = { "b_accordion: bootstrap accordion",
 				"b_codeEditor:HTML/PHP JavaScript editor",
-				"b_image:bootstrap responsive image ",
+				"b_image:bootstrap responsive image",
 				"b_imageGallery:image gallery",
-				"b_mediaObject: image and text ", "b_panel:bootstrap panel",
+				"b_mediaObject: image and text", "b_panel:bootstrap panel",
 				"b_slider: bootstrap slider", "b_tab: bootstrap tab",
-				"b_tinyMCE:Tiny MCE Editor " };
+				"b_tinyMCE:Tiny MCE Editor" };
 
 		addAndDeleteModules(webCMSPage, cmsModules, "00_basic");
 
@@ -53,10 +53,10 @@ public class CMSNavigate {
 			throws InterruptedException {
 		String[] cmsbasic_01Modules = {
 				"b_allEditor:HTML/PHP JavaScript editor",
-				"b_imageHoverClick:bootstrap responsive image swap ",
+				"b_imageHoverClick:bootstrap responsive image swap",
 				"b_imageSlipHover:bootstrap responsive slip hover image",
 				"b_slick: jquery slick plugin",
-				"b_thumImage: bootstrap slider", "b_tinyMCEA:Tiny MCEA Editor " };
+				"b_thumImage: bootstrap slider", "b_tinyMCEA:Tiny MCEA Editor" };
 
 		String[] cmsbasic_02Modules = {
 				"b_docAndFile:list of description files(pdf/doc/ppt ...",
@@ -91,12 +91,12 @@ public class CMSNavigate {
 		addAndDeleteModules(webCMSPage, cmsModulesLink, "04_link");
 
 		// 05_misc
-		String[] cmsModulesMisc = { "aImage:an image ",
+		String[] cmsModulesMisc = { "aImage:an image",
 				"allEditor:HTML/PHP JavaScript editor",
 				"angular_blog_edit:blog editor",
-				"b_restaurantMenuItems:Add a category ",
-				"fullCalendar:fullCalendar", "googleMap:Google MAP ",
-				"minicartItem: add minicart items "};
+				"b_restaurantMenuItems:Add a category",
+				"fullCalendar:fullCalendar", "googleMap:Google MAP",
+				"minicartItem: add minicart items" };
 
 		addAndDeleteModules(webCMSPage, cmsModulesMisc, "05_misc");
 
@@ -125,16 +125,20 @@ public class CMSNavigate {
 	private static void selectModule(WebCMSPage webCMSPage, String groupMod,
 			String cmsModule) throws InterruptedException {
 		// Select module group and module
+
 		Select modGroupDropDown = new Select(webCMSPage.getDriver()
 				.findElement(By.id("modgroup")));
 		modGroupDropDown.selectByVisibleText(groupMod);
+
 		Select modDropDown = new Select(webCMSPage.getDriver().findElement(
 				By.id("mymod")));
+
 		modDropDown.selectByVisibleText(cmsModule);
 		webCMSPage
 				.getDriver()
 				.findElement(
 						By.xpath(".//*[@id='frmTest']/table/tbody/tr/td/input"))
 				.click();
+
 	}
 }
