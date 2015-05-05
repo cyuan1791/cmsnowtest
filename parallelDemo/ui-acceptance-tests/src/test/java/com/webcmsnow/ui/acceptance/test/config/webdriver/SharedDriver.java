@@ -18,19 +18,19 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
 public class SharedDriver extends EventFiringWebDriver {
 	private static WebDriver REAL_DRIVER;
 
-	
 	private static WebDriver getRealDriver() throws Exception {
 		System.setProperty("webdriver.chrome.driver",
 				"/Users/cmsnow/jsrc/chromedriver");
 		// driver = new FirefoxDriver();
 		// driver = new ChromeDriver();
 		if (REAL_DRIVER == null) {
-			//REAL_DRIVER = new FirefoxDriver();
+			// REAL_DRIVER = new FirefoxDriver();
 			REAL_DRIVER = new ChromeDriver();
 			// REAL_DRIVER = new RemoteWebDriver(
 			// new URL("http://vm1:4444/wd/hub"),
 			// DesiredCapabilities.firefox());
-			REAL_DRIVER.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+			REAL_DRIVER.manage().timeouts()
+					.implicitlyWait(10, TimeUnit.SECONDS);
 
 		}
 		return REAL_DRIVER;
