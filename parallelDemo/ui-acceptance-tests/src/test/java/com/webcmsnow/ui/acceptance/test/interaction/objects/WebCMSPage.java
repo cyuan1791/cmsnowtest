@@ -268,7 +268,7 @@ public class WebCMSPage extends AbstractPageObject {
 		myTitle = getDriver().getTitle();
 
 		getDriver().close(); // close newly opened window when done with it
-		// Thread.sleep(10000);
+		Thread.sleep(1000);
 		getDriver().switchTo().window(parentHandle); // switch back to the
 														// original window
 		System.out.println("Switch to " + parentHandle);

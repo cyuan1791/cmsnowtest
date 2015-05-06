@@ -126,9 +126,9 @@ public class CMSNowTests extends AbstractStepDefinition {
 	public void takeFailureScreenShot() {
 
 		// Output extra info to report
-		if (scenario.isFailed()) {
-			myTakeScreenShot(webCMSPage.getDriver());
-		}
+		//if (scenario.isFailed()) {
+		//	myTakeScreenShot(webCMSPage.getDriver());
+		//}
 		webCMSPage.getDriver().quit();
 	}
 
